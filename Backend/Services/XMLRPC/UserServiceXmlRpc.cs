@@ -23,6 +23,7 @@ namespace CourseWork.Services.XMLRPC
             return _userDataProvider.GetAllUsers().ToArray();
         }
 
+
         public UserModel GetById(string id)
         {
             return _userDataProvider.GetUserById(id);
