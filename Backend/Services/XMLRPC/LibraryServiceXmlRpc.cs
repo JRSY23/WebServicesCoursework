@@ -20,15 +20,15 @@ namespace CourseWork.Services.XMLRPC
         }
 
         #region Books
-        public IEnumerable<Book> GetBooks()
+        public Book[] GetBooks()
         {
             using (var _context = LibraryContext.Create())
             {
-                return _context.Books.ToList();
+                return _context.Books.ToArray();
             }
         }
 
-        public IEnumerable<BooksInfo> GetBookInfo()
+        public BooksInfo[] GetBookInfo()
         {
             using (var _context = LibraryContext.Create())
             {
@@ -36,12 +36,141 @@ namespace CourseWork.Services.XMLRPC
                 {
                     BookID = x.BookID,
                     BookData = $"{x.Name}| {x.Author}| {x.IssueDate.Date}"
-                }).ToList();
+                }).ToArray();
 
                 return booksInfo;
             }
         }
+        #endregion
 
+        #region LibraryAccounting
+        public LibraryAccounting[] GetLibraryAccounting()
+        {
+            using (var _context = LibraryContext.Create())
+            {
+                return _context.LibraryAccounting.ToArray();
+            }
+        }
+        public LibraryAccountingInfo[] GetLibraryAccountingInfo()
+        {
+            using (var _context = LibraryContext.Create())
+            {
+                var accountsInfo = _context.LibraryAccounting
+                .Join(
+                    _context.LibraryAccounts,
+                    libraryAccountings => libraryAccountings.AccountID,
+                    libraryAccounts => libraryAccounts.AccountID,
+                    (libraryAccountings, libraryAccounts) => new
+                    {
+                        libraryAccountings,
+                        libraryAccounts
+                    })
+                .Join(
+                    _context.Books,
+                    libraryAccountings => libraryAccountings.libraryAccountings.BookID,
+                    books => books.BookID,
+                    (libraryAccountings, books) => new
+                    {
+                        libraryAccountings,
+                        books
+                    })
+                .Select(libraryAccountingsInfo => new LibraryAccountingInfo
+                {
+                    LibraryAccountingID = libraryAccountingsInfo.libraryAccountings.libraryAccountings.LibraryAccountingID,
+                    Type = libraryAccountingsInfo.libraryAccountings.libraryAccountings.Type,
+                    BookInfo = $"{ libraryAccountingsInfo.books.Author }| { libraryAccountingsInfo.books.Name }| {libraryAccountingsInfo.books.IssueDate}",
+                    AccountInfo = $"{libraryAccountingsInfo.libraryAccountings.libraryAccounts.AccountNumber}|" +
+                    $"{libraryAccountingsInfo.libraryAccountings.libraryAccounts.FirstName}|" +
+                    $"{libraryAccountingsInfo.libraryAccountings.libraryAccounts.SurName}",
+                    IssueDate = libraryAccountingsInfo.libraryAccountings.libraryAccountings.IssueDate,
+                    CompletionDate = libraryAccountingsInfo.libraryAccountings.libraryAccountings.CompletionDate
+                }).ToArray();
+
+                return accountsInfo;
+            }
+        }
+        #endregion
+
+        #region LibraryAccount
+        public LibraryAccount[] GetLibraryAccounts()
+        {
+            using (var _context = LibraryContext.Create())
+            {
+                return _context.LibraryAccounts.ToArray();
+            }           
+        }
+
+        public AccountInfo[] GetAccountsInfo()
+        {
+            using (var _context = LibraryContext.Create())
+            {
+                var accountsInfo = _context.LibraryAccounts.Select(x => new AccountInfo
+                {
+                    AccountID = x.AccountID,
+                    AccountData = $"{x.AccountNumber}|{x.FirstName}|{x.SurName}"
+                }).ToArray();
+
+                return accountsInfo;
+            }
+        }
+        #endregion
+
+        #region PenaltiesAccounting
+        public PenaltiesAccounting[] GetPenaltiesAccounting()
+        {
+            using (var _context = LibraryContext.Create())
+            {
+                return _context.PenaltiesAccountings.ToArray();
+            }
+        }
+
+        public PenaltiesAccountingsInfo[] GetPenaltiesAccountingsInfo()
+        {
+            using (var _context = LibraryContext.Create())
+            {
+                var penaltiesAccountingsInfo = _context.PenaltiesAccountings
+                .Join(
+                    _context.LibraryAccounts,
+                    penaltiesAccountings => penaltiesAccountings.AccountID,
+                    libraryAccounts => libraryAccounts.AccountID,
+                    (penaltiesAccountings, libraryAccounts) => new
+                    {
+                        penaltiesAccountings,
+                        libraryAccounts
+                    })
+                .Join(
+                    _context.Penalties,
+                    penaltiesAccountings => penaltiesAccountings.penaltiesAccountings.PenaltyID,
+                    penalties => penalties.PenaltyID,
+                    (penaltiesAccountings, penalties) => new
+                    {
+                        penaltiesAccountings,
+                        penalties
+                    })
+                .Select(penaltiesAccountingsInfo => new PenaltiesAccountingsInfo
+                {
+                    PenaltiesAccountingID = penaltiesAccountingsInfo.penaltiesAccountings.penaltiesAccountings.PenaltiesAccountingID,
+                    AccountNumber = penaltiesAccountingsInfo.penaltiesAccountings.libraryAccounts.AccountNumber,
+                    FirstName = penaltiesAccountingsInfo.penaltiesAccountings.libraryAccounts.FirstName,
+                    SurName = penaltiesAccountingsInfo.penaltiesAccountings.libraryAccounts.SurName,
+                    Type = penaltiesAccountingsInfo.penalties.Type,
+                    Sum = penaltiesAccountingsInfo.penaltiesAccountings.penaltiesAccountings.Sum,
+                    Date = penaltiesAccountingsInfo.penaltiesAccountings.penaltiesAccountings.Date
+                }).ToArray();
+
+                return penaltiesAccountingsInfo;
+            }
+        }
+        #endregion
+
+        #region LibraryAccount
+        public Penalty[] GetPenalties()
+        {
+            using (var _context = LibraryContext.Create())
+            {
+                return _context.Penalties.ToArray();
+            }
+        }
         #endregion
 
         public override void ProcessRequest(HttpListenerContext RequestContext)
@@ -115,7 +244,7 @@ namespace CourseWork.Services.XMLRPC
             {
                 using (var wrtr = new XmlTextWriter(new StreamWriter(stm)))
                 {
-                    XmlRpcDocWriter.WriteDoc(wrtr, this.GetType(), autoDocVersion);
+                    XmlRpcDocWriter.WriteDoc(wrtr, GetType(), autoDocVersion);
                     wrtr.Flush();
                     httpResp.ContentType = "text/html";
                     httpResp.ContentLength = stm.Length;

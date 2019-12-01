@@ -9,10 +9,41 @@ namespace CourseWork.Services.XMLRPC
 {
     interface ILibraryServiceXmlRpc
     {
+        #region Books
         [XmlRpcMethod("GetBooks")]
-        IEnumerable<Book> GetBooks();
+        Book[] GetBooks();
 
         [XmlRpcMethod("GetBookInfo")]
-        IEnumerable<BooksInfo> GetBookInfo();
+        BooksInfo[] GetBookInfo();
+        #endregion
+
+        #region LibraryAccounting
+        [XmlRpcMethod("GetLibraryAccounting")]
+        LibraryAccounting[] GetLibraryAccounting();
+
+        [XmlRpcMethod("GetLibraryAccountingInfo")]
+        LibraryAccountingInfo[] GetLibraryAccountingInfo();
+        #endregion
+
+        #region LibraryAccount
+        [XmlRpcMethod("GetLibraryAccounts")]
+        LibraryAccount[] GetLibraryAccounts();
+
+        [XmlRpcMethod("GetAccountsInfo")]
+        AccountInfo[] GetAccountsInfo();
+        #endregion
+
+        #region GetPenaltiesAccounting
+        [XmlRpcMethod("GetPenaltiesAccounting")]
+        PenaltiesAccounting[] GetPenaltiesAccounting();
+
+        [XmlRpcMethod("GetPenaltiesAccountingsInfo")]
+        PenaltiesAccountingsInfo[] GetPenaltiesAccountingsInfo();
+        #endregion
+
+        #region Penalty
+        [XmlRpcMethod("GetPenalties")]
+        Penalty[] GetPenalties();
+        #endregion
     }
 }
