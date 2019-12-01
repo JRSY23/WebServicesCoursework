@@ -1,3 +1,4 @@
+import { Book } from './models/book.model';
 import {Component, OnInit} from '@angular/core';
 import {UserRestService} from './services/user-rest.service';
 import {UserModel} from './models/user.model';
@@ -51,8 +52,8 @@ export class AppComponent implements OnInit {
     });
   }
 
-  public onGetUserWithXmlRpcClick() {
-    this.userXmlRpcService.getUserById('5').subscribe((res: UserModel) => {
+  public onGetBooksWithXmlRpcClick() {
+    this.userXmlRpcService.GetBooks().subscribe((res: Book[]) => {
       console.log(res);
     });
   }

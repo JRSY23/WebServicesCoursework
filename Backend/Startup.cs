@@ -41,8 +41,9 @@ namespace CourseWork
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddDbContext<LibraryContext>(opt =>
-                opt.UseSqlServer(Configuration.GetConnectionString("SkinsDatabase")));
+                opt.UseSqlServer(Configuration.GetConnectionString("LibraryDatabase")));
             services.AddControllers();
+            services.AddSingleton(new LibraryServiceXmlRpc());
 
             services.Configure<IISServerOptions>(options =>
             {
@@ -86,7 +87,8 @@ namespace CourseWork
             {
                 while (true)
                 {
-                    var service = new UserServiceXmlRpc();
+                    var service = new LibraryServiceXmlRpc();
+                    //var service = new UserServiceXmlRpc();
                     ThreadPool.QueueUserWorkItem((object context) =>
                     {
                         var httpContext = (context as HttpListenerContext);
