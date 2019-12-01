@@ -2,6 +2,7 @@
 using Horizon.XmlRpc.Server;
 using LibraryApi.DAL;
 using LibraryApi.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,24 @@ namespace CourseWork.Services.XMLRPC
                 }).ToArray();
 
                 return booksInfo;
+            }
+        }
+
+        public HttpStatusCode PostBook([FromBody]Book book)
+        {
+            using (var _context = LibraryContext.Create())
+            {
+                try
+                {
+                    _context.Books.Add(book);
+                    _context.SaveChangesAsync();
+
+                    return HttpStatusCode.Created;
+                }
+                catch (Exception)
+                {
+                    return HttpStatusCode.NoContent;
+                }
             }
         }
         #endregion
@@ -89,6 +108,25 @@ namespace CourseWork.Services.XMLRPC
                 return accountsInfo;
             }
         }
+
+        public HttpStatusCode PostLibraryAccounting([FromBody]LibraryAccounting libraryAccounting)
+        {
+            using (var _context = LibraryContext.Create())
+            {
+                try
+                {
+                    _context.LibraryAccounting.Add(libraryAccounting);
+                    _context.SaveChangesAsync();
+
+                    return HttpStatusCode.Created;
+                }
+                catch (Exception)
+                {
+                    return HttpStatusCode.NoContent;
+                }
+                
+            }
+        }
         #endregion
 
         #region LibraryAccount
@@ -111,6 +149,24 @@ namespace CourseWork.Services.XMLRPC
                 }).ToArray();
 
                 return accountsInfo;
+            }
+        }
+
+        public HttpStatusCode PostLibraryAccount([FromBody]LibraryAccount libraryAccount)
+        {
+            using (var _context = LibraryContext.Create())
+            {
+                try
+                {
+                    _context.LibraryAccounts.Add(libraryAccount);
+                    _context.SaveChangesAsync();
+
+                    return HttpStatusCode.Created;
+                }
+                catch (Exception)
+                {
+                    return HttpStatusCode.NoContent;
+                }
             }
         }
         #endregion
@@ -161,14 +217,52 @@ namespace CourseWork.Services.XMLRPC
                 return penaltiesAccountingsInfo;
             }
         }
+
+        public HttpStatusCode PostPenaltiesAccounting([FromBody]PenaltiesAccounting penaltiesAccounting)
+        {
+            using (var _context = LibraryContext.Create())
+            {
+                try
+                {
+                    _context.PenaltiesAccountings.Add(penaltiesAccounting);
+                    _context.SaveChangesAsync();
+
+                    return HttpStatusCode.Created;
+                }
+                catch (Exception)
+                {
+
+                    return HttpStatusCode.NoContent;
+                }                
+            }
+        }
         #endregion
 
-        #region LibraryAccount
+        #region Penalty
         public Penalty[] GetPenalties()
         {
             using (var _context = LibraryContext.Create())
             {
                 return _context.Penalties.ToArray();
+            }
+        }
+
+        public HttpStatusCode PostPenalty([FromBody]Penalty penalty)
+        {
+            using (var _context = LibraryContext.Create())
+            {
+                try
+                {
+                    _context.Penalties.Add(penalty);
+                    _context.SaveChangesAsync();
+
+                    return HttpStatusCode.Created;
+                }
+                catch (Exception)
+                {
+
+                    return HttpStatusCode.NoContent; 
+                }               
             }
         }
         #endregion

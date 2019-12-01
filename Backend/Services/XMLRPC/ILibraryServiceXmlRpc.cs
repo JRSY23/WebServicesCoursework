@@ -3,6 +3,7 @@ using LibraryApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace CourseWork.Services.XMLRPC
@@ -15,6 +16,9 @@ namespace CourseWork.Services.XMLRPC
 
         [XmlRpcMethod("GetBookInfo")]
         BooksInfo[] GetBookInfo();
+
+        [XmlRpcMethod("PostBook")]
+        HttpStatusCode PostBook(Book book);
         #endregion
 
         #region LibraryAccounting
@@ -23,6 +27,9 @@ namespace CourseWork.Services.XMLRPC
 
         [XmlRpcMethod("GetLibraryAccountingInfo")]
         LibraryAccountingInfo[] GetLibraryAccountingInfo();
+
+        [XmlRpcMethod("PostLibraryAccounting")]
+        HttpStatusCode PostLibraryAccounting(LibraryAccounting libraryAccounting);
         #endregion
 
         #region LibraryAccount
@@ -31,6 +38,9 @@ namespace CourseWork.Services.XMLRPC
 
         [XmlRpcMethod("GetAccountsInfo")]
         AccountInfo[] GetAccountsInfo();
+
+        [XmlRpcMethod("PostLibraryAccount")]
+        HttpStatusCode PostLibraryAccount(LibraryAccount libraryAccount);
         #endregion
 
         #region GetPenaltiesAccounting
@@ -39,11 +49,17 @@ namespace CourseWork.Services.XMLRPC
 
         [XmlRpcMethod("GetPenaltiesAccountingsInfo")]
         PenaltiesAccountingsInfo[] GetPenaltiesAccountingsInfo();
+
+        [XmlRpcMethod("PostPenaltiesAccounting")]
+        HttpStatusCode PostPenaltiesAccounting(PenaltiesAccounting penaltiesAccounting);
         #endregion
 
         #region Penalty
         [XmlRpcMethod("GetPenalties")]
         Penalty[] GetPenalties();
+
+        [XmlRpcMethod("PostPenalty")]
+        HttpStatusCode PostPenalty(Penalty penalty);
         #endregion
     }
 }
