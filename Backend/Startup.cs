@@ -38,6 +38,7 @@ namespace CourseWork
             services.AddXmlRpc();
             services.TryAddSingleton<ISampleService, SampleService>();
             services.TryAddSingleton<IUserServiceSoap, UserServiceSoap>();
+            services.TryAddSingleton<ILibrarySoapService, LibrarySoapService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddDbContext<LibraryContext>(opt =>
@@ -78,6 +79,7 @@ namespace CourseWork
 
             app.UseSoapEndpoint<ISampleService>("/Service.asmx", new BasicHttpBinding(), SoapSerializer.XmlSerializer);
             app.UseSoapEndpoint<IUserServiceSoap>("/api/soap/user.asmx", new BasicHttpBinding(), SoapSerializer.XmlSerializer);
+            app.UseSoapEndpoint<ILibrarySoapService>("/api/soap/Library.asmx", new BasicHttpBinding(), SoapSerializer.XmlSerializer);
 
             var listener = new HttpListener();
             listener.Prefixes.Add("http://127.0.0.1:5678/");
