@@ -2,7 +2,6 @@ using System.Net;
 using System.ServiceModel;
 using System.Threading;
 using System.Threading.Tasks;
-using CourseWork.Models.SOAP;
 using CourseWork.Services.SOAP;
 using CourseWork.Services.XMLRPC;
 using Horizon.XmlRpc.AspNetCore.Extensions;
@@ -10,6 +9,7 @@ using LibraryApi.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,8 +36,8 @@ namespace CourseWork
             services.AddSoapCore();
             services.AddCors();
             services.AddXmlRpc();
-            services.TryAddSingleton<ISampleService, SampleService>();
-            services.TryAddSingleton<IUserServiceSoap, UserServiceSoap>();
+            //services.TryAddSingleton<ISampleService, SampleService>();
+            //services.TryAddSingleton<IUserServiceSoap, UserServiceSoap>();
             services.TryAddSingleton<ILibrarySoapService, LibrarySoapService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
@@ -45,6 +45,11 @@ namespace CourseWork
                 opt.UseSqlServer(Configuration.GetConnectionString("LibraryDatabase")));
             services.AddControllers();
             services.AddSingleton(new LibraryServiceXmlRpc());
+
+            services.Configure<KestrelServerOptions>(options =>
+            {
+                options.AllowSynchronousIO = true;
+            });
 
             services.Configure<IISServerOptions>(options =>
             {
@@ -77,8 +82,8 @@ namespace CourseWork
                 endpoints.MapControllers();
             });
 
-            app.UseSoapEndpoint<ISampleService>("/Service.asmx", new BasicHttpBinding(), SoapSerializer.XmlSerializer);
-            app.UseSoapEndpoint<IUserServiceSoap>("/api/soap/user.asmx", new BasicHttpBinding(), SoapSerializer.XmlSerializer);
+            //app.UseSoapEndpoint<ISampleService>("/Service.asmx", new BasicHttpBinding(), SoapSerializer.XmlSerializer);
+            //app.UseSoapEndpoint<IUserServiceSoap>("/api/soap/user.asmx", new BasicHttpBinding(), SoapSerializer.XmlSerializer);
             app.UseSoapEndpoint<ILibrarySoapService>("/api/soap/Library.asmx", new BasicHttpBinding(), SoapSerializer.XmlSerializer);
 
             var listener = new HttpListener();
