@@ -1,18 +1,23 @@
-<mat-toolbar color="primary">
+<mat-toolbar style="background-color: #6b4003;">
   <mat-toolbar-row>
-    <span>My Application</span>
+    <button mat-icon-button [matMenuTriggerFor]="mainMenu" aria-label="Example icon-button with a menu">
+        <mat-icon>home</mat-icon>
+    </button>
+    <mat-menu #mainMenu="matMenu">
+      <button mat-menu-item routerLink="/libraryaccounting">Library Accounting</button>
+      <button mat-menu-item routerLink="/accounts">Accounts</button>
+      <button mat-menu-item routerLink="/penaltiesaccounting">Penalties Accounting</button>
+      <button mat-menu-item routerLink="/books">Books</button>
+      <button mat-menu-item routerLink="/penalties">Penalties</button>
+    </mat-menu>
+    <span>Library</span>
     <span class="example-spacer"></span>
-    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+    <button mat-button [matMenuTriggerFor]="menu">{{currentConnection$ | async}}</button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>Item 1</button>
-      <button mat-menu-item>Item 2</button>
+      <ng-container *ngFor="let connectionType of connectionTypes$ | async">
+        <button mat-menu-item (click)="onMenuButtonClick(connectionType.toString())">{{connectionType.toString()}}</button>
+      </ng-container>
     </mat-menu>
   </mat-toolbar-row>
 </mat-toolbar>
-<button mat-raised-button color="primary" (click)="onGetUserWithRestClick()">GetUserWithRest</button>
-<button mat-raised-button color="accent" (click)="onGetListUsersWithRestClick()">GetListUsersWithRest</button>
-<button mat-raised-button color="primary" (click)="onGetUserWithSoapClick()">GetUserWithSoap</button>
-<button mat-raised-button color="accent" (click)="onGetListUsersWithSoapClick()">GetListUsersWithSoap</button>
-<button mat-raised-button color="primary" (click)="onGetBooksWithXmlRpcClick()">GetBooksWithXmlRpc</button>
-<button mat-raised-button color="accent" (click)="onGetListUsersWithXmlRpcClick()">GetListUsersWithXmlRpc</button>
 <router-outlet></router-outlet>
