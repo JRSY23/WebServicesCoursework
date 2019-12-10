@@ -25,7 +25,7 @@ export class LibraryXmlRpcService {
 
   public getBooks(): Observable<Book[]> {
     return new Observable<Book[]>((observer: Observer<Book[]>) => {
-      this.xmlRpcClient.methodCall('Get', [], (error, value) => {
+      this.xmlRpcClient.methodCall('GetBooks', [], (error, value) => {
         observer.next(value);
         observer.complete();
       });
@@ -52,7 +52,7 @@ export class LibraryXmlRpcService {
   //
   public getLibraryAccounting(): Observable<LibraryAccounting[]> {
     return new Observable<LibraryAccounting[]>((observer: Observer<LibraryAccounting[]>) => {
-      this.xmlRpcClient.methodCall('Get', [], (error, value) => {
+      this.xmlRpcClient.methodCall('GetLibraryAccounting', [], (error, value) => {
         observer.next(value);
         observer.complete();
       });
@@ -79,7 +79,7 @@ export class LibraryXmlRpcService {
   //
   public getPenaltiesAccounting(): Observable<PenaltiesAccounting[]> {
     return new Observable<PenaltiesAccounting[]>((observer: Observer<PenaltiesAccounting[]>) => {
-      this.xmlRpcClient.methodCall('Get', [], (error, value) => {
+      this.xmlRpcClient.methodCall('GetPenaltiesAccounting', [], (error, value) => {
         observer.next(value);
         observer.complete();
       });
@@ -106,7 +106,7 @@ export class LibraryXmlRpcService {
    //
    public getLibraryAccounts(): Observable<LibraryAccount[]> {
     return new Observable<LibraryAccount[]>((observer: Observer<LibraryAccount[]>) => {
-      this.xmlRpcClient.methodCall('Get', [], (error, value) => {
+      this.xmlRpcClient.methodCall('GetLibraryAccounts', [], (error, value) => {
         observer.next(value);
         observer.complete();
       });
@@ -134,7 +134,7 @@ export class LibraryXmlRpcService {
   //
   public getPenalties(): Observable<Penalty[]> {
     return new Observable<Penalty[]>((observer: Observer<Penalty[]>) => {
-      this.xmlRpcClient.methodCall('Get', [], (error, value) => {
+      this.xmlRpcClient.methodCall('GetPenalties', [], (error, value) => {
         observer.next(value);
         observer.complete();
       });

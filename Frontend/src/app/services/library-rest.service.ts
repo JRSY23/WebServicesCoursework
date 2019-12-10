@@ -19,59 +19,59 @@ export class LibraryRestService {
   }
 
   public getBooks(): Observable<Book[]> {
-    return this.httpClient.get<Book[]>('http://localhost:5001/api/rest/books/Get');
+    return this.httpClient.get<Book[]>('https://localhost:5001/api/rest/books');
   }
 
   public postBook(book: Book): Observable<any> {
-    return this.httpClient.post('http://localhost:5001/api/rest/books/Post', book);
+    return this.httpClient.post('https://localhost:5001/api/rest/books/Post', book);
   }
 
   public getBookInfo(): Observable<BooksInfo[]> {
-    return this.httpClient.get<BooksInfo[]>('http://localhost:5001/api/rest/books/GetBookInfo');
+    return this.httpClient.get<BooksInfo[]>('https://localhost:5001/api/rest/books/GetBookInfo');
   }
 //
   public getLibraryAccounting(): Observable<LibraryAccounting[]> {
-    return this.httpClient.get<LibraryAccounting[]>('http://localhost:5001/api/rest/LibraryAccountings/Get');
+    return this.httpClient.get<LibraryAccounting[]>('https://localhost:5001/api/rest/LibraryAccountings');
   }
 
   public getLibraryAccountingInfo(): Observable<LibraryAccountingInfo[]> {
-    return this.httpClient.get<LibraryAccountingInfo[]>('http://localhost:5001/api/rest/LibraryAccountings/GetLibraryAccountingInfo');
+    return this.httpClient.get<LibraryAccountingInfo[]>('https://localhost:5001/api/rest/LibraryAccountings/GetLibraryAccountingInfo');
   }
 
   public postLibraryAccounting(libraryAccountings: LibraryAccounting): Observable<any> {
-    return this.httpClient.post('http://localhost:5001/api/rest/LibraryAccountings/Post', libraryAccountings);
+    return this.httpClient.post('https://localhost:5001/api/rest/LibraryAccountings/Post', libraryAccountings);
   }
 //
   public getPenaltiesAccounting(): Observable<PenaltiesAccounting[]> {
-    return this.httpClient.get<PenaltiesAccounting[]>('http://localhost:5001/api/rest/PenaltiesAccountings/Get');
+    return this.httpClient.get<PenaltiesAccounting[]>('https://localhost:5001/api/rest/PenaltiesAccountings');
   }
 
   public getPenaltiesAccountingsInfo(): Observable<PenaltiesAccountingsInfo[]> {
     return this.httpClient
-    .get<PenaltiesAccountingsInfo[]>('http://localhost:5001/api/rest/PenaltiesAccountings/GetPenaltiesAccountingsInfo');
+    .get<PenaltiesAccountingsInfo[]>('https://localhost:5001/api/rest/PenaltiesAccountings/GetPenaltiesAccountingsInfo');
   }
 
   public postPenaltiesAccounting(penaltiesAccounting: PenaltiesAccounting): Observable<any> {
-    return this.httpClient.post('http://localhost:5001/api/rest/PenaltiesAccountings/Post', penaltiesAccounting);
+    return this.httpClient.post('https://localhost:5001/api/rest/PenaltiesAccountings/Post', penaltiesAccounting);
   }
 //
   public getLibraryAccounts(): Observable<LibraryAccount[]> {
-    return this.httpClient.get<LibraryAccount[]>('http://localhost:5001/api/rest/LibraryAccounts/Get');
+    return this.httpClient.get<LibraryAccount[]>('https://localhost:5001/api/rest/LibraryAccounts');
   }
 
   public getAccountsInfo(): Observable<AccountInfo[]> {
-    return this.httpClient.get<AccountInfo[]>('http://localhost:5001/api/rest/LibraryAccounts/GetAccountsInfo');
+    return this.httpClient.get<AccountInfo[]>('https://localhost:5001/api/rest/LibraryAccounts/GetAccountsInfo');
   }
 
   public postLibraryAccount(libraryAccount: LibraryAccount): Observable<any> {
-    return this.httpClient.post('http://localhost:5001/api/rest/LibraryAccounts/Post', libraryAccount);
+    return this.httpClient.post('https://localhost:5001/api/rest/LibraryAccounts/Post', libraryAccount);
   }
 //
   public getPenalties(): Observable<Penalty[]> {
-    return this.httpClient.get<Penalty[]>('http://localhost:5001/api/rest/Penalties/Get');
+    return this.httpClient.get<Penalty[]>('https://localhost:5001/api/rest/Penalties');
   }
 
   public postPenalty(penalty: Penalty): Observable<any> {
-    return this.httpClient.post('http://localhost:5001/api/rest/Penalties/Post', penalty);
+    return this.httpClient.post('https://localhost:5001/api/rest/Penalties/Post', penalty);
   }
 }

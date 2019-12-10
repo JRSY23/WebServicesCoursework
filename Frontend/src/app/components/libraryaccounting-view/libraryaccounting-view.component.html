@@ -1,1 +1,58 @@
-<p>libraryaccounting-view works!</p>
+<div class="table">
+    <!-- <button mat-raised-button color="accent" (click)="onCreateButtonClick()">Create Account</button> -->
+    <div class="table__header">
+      <div class="table__row">
+        <div class="table__info">
+          <div class="table__cell" title="ID">ID</div>
+        </div>
+        <div class="table__info">
+            <div class="table__cell" title="Абонемент">Абонемент</div>
+        </div>
+        <div class="table__info">
+          <div class="table__cell" title="Книга">Книга</div>
+        </div>
+        <div class="table__info">
+            <div class="table__cell" title="Дата выдачи">Дата выдачи</div>
+        </div>
+        <div class="table__info">
+            <div class="table__cell" title="Дата сдачи">Дата сдачи</div>
+        </div>
+        <div class="table__info">
+            <div class="table__cell" title="Тип">Тип</div>
+        </div>
+        <div class="table__action">
+          <div class="table__button"></div>
+        </div>
+      </div>
+    </div>
+    <div class="table__body">
+      <div class="table__row table__row_item" *ngFor="let libraryAccounting of libraryAccountingsInfo | async">
+        <!-- <div class="table__info table__info_body" (click)="selectDocument.emit(item.documentId)"> -->
+        <div class="table__info table__info_body">
+          <div class="table__cell table__cell_size">
+            {{libraryAccounting.LibraryAccountingID}}
+          </div>
+          <div class="table__cell table__cell_size">
+            {{libraryAccounting.AccountInfo}}
+          </div>
+          <div class="table__cell table__cell_size">
+            {{libraryAccounting.BookInfo}}
+          </div>
+          <div class="table__cell table__cell_size">
+            {{libraryAccounting.IssueDate}}
+          </div>
+          <div class="table__cell table__cell_size">
+              {{libraryAccounting.CompletionDate}}
+          </div>
+          <div class="table__cell table__cell_size">
+              {{libraryAccounting.Type}}
+            </div>
+        </div>
+        <div class="table__action">
+          <!--<div class="table__button table__button_edit" cellTooltip="Дополнить" (click)="onClickFinishDocument(item)">-->
+          <!--<sc-svg-icon size="s" type="edit"></sc-svg-icon>-->
+          <!--</div>-->
+        </div>
+      </div>
+    </div>
+  </div>

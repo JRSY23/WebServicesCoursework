@@ -1,1 +1,64 @@
-<p>penaltiesaccounting-view works!</p>
+<div class="table">
+    <!-- <button mat-raised-button color="accent" (click)="onCreateButtonClick()">Create Account</button> -->
+    <div class="table__header">
+      <div class="table__row">
+        <div class="table__info">
+          <div class="table__cell" title="ID">ID</div>
+        </div>
+        <div class="table__info">
+          <div class="table__cell" title="Номер">Номер абонемента</div>
+        </div>
+        <div class="table__info">
+          <div class="table__cell" title="Имя">Имя</div>
+        </div>
+        <div class="table__info">
+          <div class="table__cell" title="Фамилия">Фамилия</div>
+        </div>
+        <div class="table__info">
+          <div class="table__cell" title="Тип">Тип</div>
+        </div>
+        <div class="table__info">
+          <div class="table__cell" title="Дата">Дата штрафа</div>
+        </div>
+        <div class="table__info">
+          <div class="table__cell" title="Сумма">Сумма штрафа</div>
+        </div>
+        <div class="table__action">
+          <div class="table__button"></div>
+        </div>
+      </div>
+    </div>
+    <div class="table__body">
+      <div class="table__row table__row_item" *ngFor="let penaltiesAccounting of penaltiesAccountingsInfo | async">
+        <!-- <div class="table__info table__info_body" (click)="selectDocument.emit(item.documentId)"> -->
+        <div class="table__info table__info_body">
+          <div class="table__cell table__cell_size">
+            {{penaltiesAccounting.PenaltiesAccountingID}}
+          </div>
+          <div class="table__cell table__cell_size">
+            {{penaltiesAccounting.AccountNumber}}
+          </div>
+          <div class="table__cell table__cell_size">
+            {{penaltiesAccounting.FirstName}}
+          </div>
+          <div class="table__cell table__cell_size">
+            {{penaltiesAccounting.SurName}}
+          </div>
+          <div class="table__cell table__cell_size">
+            {{penaltiesAccounting.Type}}
+          </div>
+          <div class="table__cell table__cell_size">
+            {{penaltiesAccounting.Date}}
+          </div>
+          <div class="table__cell table__cell_size">
+            {{penaltiesAccounting.Sum}}
+          </div>
+        </div>
+        <div class="table__action">
+          <!--<div class="table__button table__button_edit" cellTooltip="Дополнить" (click)="onClickFinishDocument(item)">-->
+          <!--<sc-svg-icon size="s" type="edit"></sc-svg-icon>-->
+          <!--</div>-->
+        </div>
+      </div>
+    </div>
+  </div>

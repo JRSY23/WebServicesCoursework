@@ -26,9 +26,9 @@ export class LibrarySoapService {
   }
 
   public getBooks(): Observable<Book[]> {
-    return (this.soapClient.getValue() as any).Get('stub').pipe(
+    return (this.soapClient.getValue() as any).GetBooks('stub').pipe(
       map((result: any) => {
-        return result.result.GetResult.Book;
+        return result.result.GetBooksResult.Book;
       })
     );
   }
@@ -56,17 +56,17 @@ export class LibrarySoapService {
   }
 //
   public getLibraryAccounting(): Observable<LibraryAccounting[]> {
-    return (this.soapClient.getValue() as any).Get('stub').pipe(
+    return (this.soapClient.getValue() as any).GetLibraryAccounting('stub').pipe(
       map((result: any) => {
-        return result.result.GetResult.LibraryAccounting;
+        return result.result.GetLibraryAccountingResult.LibraryAccounting;
       })
     );
   }
 
   public getLibraryAccountingInfo(): Observable<LibraryAccountingInfo[]> {
-    return (this.soapClient.getValue() as any).GetBookInfo('stub').pipe(
+    return (this.soapClient.getValue() as any).GetLibraryAccountingInfo('stub').pipe(
       map((result: any) => {
-        return result.result.GetLibraryAccountingInfo.LibraryAccountingInfo.map((libraryAccountingInfo: any) => {
+        return result.result.GetLibraryAccountingInfoResult.LibraryAccountingInfo.map((libraryAccountingInfo: any) => {
           return {
             LibraryAccountingID: libraryAccountingInfo.LibraryAccountingID,
             Type: libraryAccountingInfo.Type,
@@ -90,9 +90,9 @@ export class LibrarySoapService {
   }
   //
   public getPenaltiesAccounting(): Observable<PenaltiesAccounting[]> {
-    return (this.soapClient.getValue() as any).Get('stub').pipe(
+    return (this.soapClient.getValue() as any).GetPenaltiesAccounting('stub').pipe(
       map((result: any) => {
-        return result.result.GetResult.PenaltiesAccounting;
+        return result.result.GetPenaltiesAccountingResult.PenaltiesAccounting;
       })
     );
   }
@@ -100,7 +100,7 @@ export class LibrarySoapService {
   public getPenaltiesAccountingsInfo(): Observable<PenaltiesAccountingsInfo[]> {
     return (this.soapClient.getValue() as any).GetPenaltiesAccountingsInfo('stub').pipe(
       map((result: any) => {
-        return result.result.GetPenaltiesAccountingsInfo.PenaltiesAccountingsInfo.map((penaltiesAccountingsInfo: any) => {
+        return result.result.GetPenaltiesAccountingsInfoResult.PenaltiesAccountingsInfo.map((penaltiesAccountingsInfo: any) => {
           return {
             PenaltiesAccountingID: penaltiesAccountingsInfo.PenaltiesAccountingID,
             AccountNumber: penaltiesAccountingsInfo.AccountNumber,
@@ -125,25 +125,21 @@ export class LibrarySoapService {
   }
   //
   public getLibraryAccounts(): Observable<LibraryAccount[]> {
-    return (this.soapClient.getValue() as any).Get('stub').pipe(
+    return (this.soapClient.getValue() as any).GetLibraryAccounts('stub').pipe(
       map((result: any) => {
-        return result.result.GetResult.LibraryAccount;
+        return result.result.GetLibraryAccountsResult.LibraryAccount;
       })
     );
   }
 
   public getAccountsInfo(): Observable<AccountInfo[]> {
-    return (this.soapClient.getValue() as any).GetLibraryAccountingInfo('stub').pipe(
+    return (this.soapClient.getValue() as any).GetLibraryAccountsInfo('stub').pipe(
       map((result: any) => {
-        return result.result.GetLibraryAccountingInfo.LibraryAccountingInfo.map((libraryAccountingInfo: any) => {
+        return result.result.GetLibraryAccountingInfo.LibraryAccountsInfo.map((libraryAccountsInfo: any) => {
           return {
-            LibraryAccountingID: libraryAccountingInfo.LibraryAccountingID,
-            Type: libraryAccountingInfo.Type,
-            BookInfo: libraryAccountingInfo.BookInfo,
-            AccountInfo: libraryAccountingInfo.AccountInfo,
-            IssueDate: libraryAccountingInfo.IssueDate,
-            CompletionDate: libraryAccountingInfo.CompletionDate
-          } as LibraryAccountingInfo;
+            AccountID: libraryAccountsInfo.AccontID,
+            AccountData: libraryAccountsInfo.AccountData,
+          } as AccountInfo;
         });
       })
     );
@@ -159,9 +155,9 @@ export class LibrarySoapService {
   }
   //
   public getPenalties(): Observable<Penalty[]> {
-    return (this.soapClient.getValue() as any).Get('stub').pipe(
+    return (this.soapClient.getValue() as any).GetPenalties('stub').pipe(
       map((result: any) => {
-        return result.result.GetResult.Penalty;
+        return result.result.GetPenaltiesResult.Penalty;
       })
     );
   }
