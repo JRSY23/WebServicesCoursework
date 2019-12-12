@@ -34,7 +34,7 @@ export class LibraryXmlRpcService {
 
   public postBook(book: Book): Observable<any> {
     return new Observable<Book[]>((observer: Observer<Book[]>) => {
-      this.xmlRpcClient.methodCall('Post', [book], (error, value) => {
+      this.xmlRpcClient.methodCall('PostBook', [book], (error, value) => {
         observer.next(value);
         observer.complete();
       });
@@ -61,7 +61,7 @@ export class LibraryXmlRpcService {
 
   public postLibraryAccounting(libraryAccounting: LibraryAccounting): Observable<any> {
     return new Observable<LibraryAccounting[]>((observer: Observer<LibraryAccounting[]>) => {
-      this.xmlRpcClient.methodCall('Post', [libraryAccounting], (error, value) => {
+      this.xmlRpcClient.methodCall('PostLibraryAccounting', [libraryAccounting], (error, value) => {
         observer.next(value);
         observer.complete();
       });
@@ -88,7 +88,7 @@ export class LibraryXmlRpcService {
 
   public postPenaltiesAccounting(penaltiesAccounting: PenaltiesAccounting): Observable<any> {
     return new Observable<PenaltiesAccounting[]>((observer: Observer<PenaltiesAccounting[]>) => {
-      this.xmlRpcClient.methodCall('Post', [penaltiesAccounting], (error, value) => {
+      this.xmlRpcClient.methodCall('PostPenaltiesAccounting', [penaltiesAccounting], (error, value) => {
         observer.next(value);
         observer.complete();
       });
@@ -115,7 +115,7 @@ export class LibraryXmlRpcService {
 
   public postLibraryAccount(libraryAccount: LibraryAccount): Observable<any> {
     return new Observable<LibraryAccount[]>((observer: Observer<LibraryAccount[]>) => {
-      this.xmlRpcClient.methodCall('Post', [libraryAccount], (error, value) => {
+      this.xmlRpcClient.methodCall('PostLibraryAccount', [libraryAccount], (error, value) => {
         observer.next(value);
         observer.complete();
       });
@@ -143,7 +143,7 @@ export class LibraryXmlRpcService {
 
   public postPenalty(penalty: Penalty): Observable<any> {
     return new Observable<Penalty[]>((observer: Observer<Penalty[]>) => {
-      this.xmlRpcClient.methodCall('Post', [penalty], (error, value) => {
+      this.xmlRpcClient.methodCall('PostPenalty', [penalty], (error, value) => {
         observer.next(value);
         observer.complete();
       });

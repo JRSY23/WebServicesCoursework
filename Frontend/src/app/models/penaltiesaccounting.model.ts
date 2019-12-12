@@ -1,7 +1,7 @@
 export interface PenaltiesAccounting {
-  PenaltiesAccountingID: number;
-  PenaltyID: number;
+  PenaltiesAccountingID: string;
+  PenaltyID: string;
   Sum: number;
   Date: Date;
-  AccountID: number;
+  AccountID: string;
 }

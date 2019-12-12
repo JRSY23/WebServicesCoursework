@@ -40,7 +40,7 @@ namespace CourseWork.Services.XMLRPC
         AccountInfo[] GetAccountsInfo();
 
         [XmlRpcMethod("PostLibraryAccount")]
-        HttpStatusCode PostLibraryAccount(LibraryAccount libraryAccount);
+        Task<HttpStatusCode> PostLibraryAccount(LibraryAccount libraryAccount);
         #endregion
 
         #region GetPenaltiesAccounting

@@ -1,4 +1,5 @@
-﻿using Horizon.XmlRpc.Core;
+﻿using Horizon.XmlRpc.AspNetCore;
+using Horizon.XmlRpc.Core;
 using Horizon.XmlRpc.Server;
 using LibraryApi.DAL;
 using LibraryApi.Models;
@@ -152,14 +153,14 @@ namespace CourseWork.Services.XMLRPC
             }
         }
 
-        public HttpStatusCode PostLibraryAccount([FromBody]LibraryAccount libraryAccount)
+        public async Task<HttpStatusCode> PostLibraryAccount([FromBody]LibraryAccount libraryAccount)
         {
             using (var _context = LibraryContext.Create())
             {
                 try
                 {
                     _context.LibraryAccounts.Add(libraryAccount);
-                    _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
 
                     return HttpStatusCode.Created;
                 }

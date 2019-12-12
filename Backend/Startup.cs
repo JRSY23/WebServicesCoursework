@@ -9,6 +9,7 @@ using LibraryApi.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -36,13 +37,17 @@ namespace CourseWork
             services.AddSoapCore();
             services.AddCors();
             services.AddXmlRpc();
-            //services.TryAddSingleton<ISampleService, SampleService>();
-            //services.TryAddSingleton<IUserServiceSoap, UserServiceSoap>();
+
             services.TryAddSingleton<ILibrarySoapService, LibrarySoapService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-            services.AddDbContext<LibraryContext>(opt =>
-                opt.UseSqlServer(Configuration.GetConnectionString("LibraryDatabase")));
+
+            //services.AddDbContext<LibraryContext>(opt =>
+            //    opt.UseSqlServer(Configuration.GetConnectionString("LibraryDatabase")));
+            var optionsBuilder = new DbContextOptionsBuilder<LibraryContext>();
+            optionsBuilder.UseSqlServer(Configuration.GetConnectionString("LibraryDatabase"));
+            services.AddSingleton(new LibraryContext(optionsBuilder.Options));
+
             services.AddControllers();
             services.AddSingleton(new LibraryServiceXmlRpc());
 
@@ -96,7 +101,6 @@ namespace CourseWork
                 while (true)
                 {
                     var service = new LibraryServiceXmlRpc();
-                    //var service = new UserServiceXmlRpc();
                     ThreadPool.QueueUserWorkItem((object context) =>
                     {
                         var httpContext = (context as HttpListenerContext);

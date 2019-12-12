@@ -1,5 +1,5 @@
 export interface Penalty {
-  PenaltyID: number;
+  PenaltyID: string;
   Type: string;
   DateFrom: Date;
 }

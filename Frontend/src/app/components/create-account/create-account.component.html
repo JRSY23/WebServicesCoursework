@@ -1,0 +1,23 @@
+<form class="example-form" [formGroup]="form" >
+    <mat-form-field class="example-full-width">
+      <input formControlName="FirstName" matInput placeholder="Имя" required style="color: white;">
+      <mat-error *ngIf="form.get('FirstName').invalid">Введите имя!</mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input formControlName="SurName" matInput placeholder="Фамилия" required style="color: white;">
+      <mat-error *ngIf="form.get('SurName').invalid">Введите фамилию!</mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input formControlName="AccountNumber" matInput placeholder="Номер абонемента" required style="color: white;">
+      <mat-error *ngIf="form.get('AccountNumber').invalid">Введите номер абонемента!</mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input formControlName="PasNumber" matInput type="number" placeholder="Номер паспорта" required style="color: white;">
+      <mat-error *ngIf="form.get('PasNumber.invalid')">Введите номер паспорта!</mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input formControlName="PasSerial" type="number" matInput placeholder="Серия паспорта" required style="color: white;">
+      <mat-error *ngIf="form.get('PasSerial').invalid">Введите серию паспорта!</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="onCreateButtonClick()" [disabled]="form.invalid">Добавить абонемент</button>
+</form>

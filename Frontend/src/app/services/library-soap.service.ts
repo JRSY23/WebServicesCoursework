@@ -48,7 +48,7 @@ export class LibrarySoapService {
 
   public postBook(book: Book): Observable<any> {
     // tslint:disable-next-line: object-literal-shorthand
-    return (this.soapClient.getValue() as any).CreateTaste({book: book}).pipe(
+    return (this.soapClient.getValue() as any).PostBook({book: book}).pipe(
       map((result: any) => {
         return of('');
       })
@@ -82,7 +82,7 @@ export class LibrarySoapService {
 
   public postLibraryAccounting(libraryAccounting: LibraryAccounting): Observable<any> {
     // tslint:disable-next-line: object-literal-shorthand
-    return (this.soapClient.getValue() as any).CreateTaste({libraryAccounting: libraryAccounting}).pipe(
+    return (this.soapClient.getValue() as any).PostLibraryAccounting({libraryAccounting: libraryAccounting}).pipe(
       map((result: any) => {
         return of('');
       })
@@ -117,7 +117,7 @@ export class LibrarySoapService {
 
   public postPenaltiesAccounting(penaltiesAccounting: PenaltiesAccounting): Observable<any> {
     // tslint:disable-next-line: object-literal-shorthand
-    return (this.soapClient.getValue() as any).CreateTaste({penaltiesAccounting: penaltiesAccounting}).pipe(
+    return (this.soapClient.getValue() as any).PostPenaltiesAccounting({penaltiesAccounting: penaltiesAccounting}).pipe(
       map((result: any) => {
         return of('');
       })
@@ -147,7 +147,7 @@ export class LibrarySoapService {
 
   public postLibraryAccount(libraryAccount: LibraryAccount): Observable<any> {
     // tslint:disable-next-line: object-literal-shorthand
-    return (this.soapClient.getValue() as any).CreateTaste({libraryAccount: libraryAccount}).pipe(
+    return (this.soapClient.getValue() as any).PostLibraryAccount({libraryAccount: libraryAccount}).pipe(
       map((result: any) => {
         return of('');
       })
@@ -164,7 +164,7 @@ export class LibrarySoapService {
 
   public postPenalty(penalty: Penalty): Observable<any> {
     // tslint:disable-next-line: object-literal-shorthand
-    return (this.soapClient.getValue() as any).CreateTaste({penalty: penalty}).pipe(
+    return (this.soapClient.getValue() as any).PostPenalty({penalty: penalty}).pipe(
       map((result: any) => {
         return of('');
       })

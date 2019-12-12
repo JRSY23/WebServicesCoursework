@@ -28,6 +28,7 @@ import { LibraryaccountingViewComponent } from './components/libraryaccounting-v
 import { AccountsViewComponent } from './components/accounts-view/accounts-view.component';
 import { PenaltiesViewComponent } from './components/penalties-view/penalties-view.component';
 import { PenaltiesaccountingViewComponent } from './components/penaltiesaccounting-view/penaltiesaccounting-view.component';
+import { CreateAccountComponent } from './components/create-account/create-account.component';
 
 // определение маршрутов
 const appRoutes: Routes = [
@@ -45,9 +46,11 @@ const appRoutes: Routes = [
     LibraryaccountingViewComponent,
     AccountsViewComponent,
     PenaltiesaccountingViewComponent,
-    PenaltiesViewComponent
+    PenaltiesViewComponent,
+    CreateAccountComponent
   ],
   entryComponents: [
+    CreateAccountComponent
   ],
   imports: [
     BrowserModule,

@@ -23,7 +23,7 @@ export class LibraryRestService {
   }
 
   public postBook(book: Book): Observable<any> {
-    return this.httpClient.post('https://localhost:5001/api/rest/books/Post', book);
+    return this.httpClient.post('https://localhost:5001/api/rest/books', book);
   }
 
   public getBookInfo(): Observable<BooksInfo[]> {
@@ -39,7 +39,7 @@ export class LibraryRestService {
   }
 
   public postLibraryAccounting(libraryAccountings: LibraryAccounting): Observable<any> {
-    return this.httpClient.post('https://localhost:5001/api/rest/LibraryAccountings/Post', libraryAccountings);
+    return this.httpClient.post('https://localhost:5001/api/rest/LibraryAccountings', libraryAccountings);
   }
 //
   public getPenaltiesAccounting(): Observable<PenaltiesAccounting[]> {
@@ -52,7 +52,7 @@ export class LibraryRestService {
   }
 
   public postPenaltiesAccounting(penaltiesAccounting: PenaltiesAccounting): Observable<any> {
-    return this.httpClient.post('https://localhost:5001/api/rest/PenaltiesAccountings/Post', penaltiesAccounting);
+    return this.httpClient.post('https://localhost:5001/api/rest/PenaltiesAccountings', penaltiesAccounting);
   }
 //
   public getLibraryAccounts(): Observable<LibraryAccount[]> {
@@ -64,7 +64,7 @@ export class LibraryRestService {
   }
 
   public postLibraryAccount(libraryAccount: LibraryAccount): Observable<any> {
-    return this.httpClient.post('https://localhost:5001/api/rest/LibraryAccounts/Post', libraryAccount);
+    return this.httpClient.post('https://localhost:5001/api/rest/LibraryAccounts', libraryAccount);
   }
 //
   public getPenalties(): Observable<Penalty[]> {
@@ -72,6 +72,6 @@ export class LibraryRestService {
   }
 
   public postPenalty(penalty: Penalty): Observable<any> {
-    return this.httpClient.post('https://localhost:5001/api/rest/Penalties/Post', penalty);
+    return this.httpClient.post('https://localhost:5001/api/rest/Penalties', penalty);
   }
 }

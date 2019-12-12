@@ -1,8 +1,8 @@
 export interface LibraryAccounting {
-  LibraryAccountingID: number;
+  LibraryAccountingID: string;
   Type: string;
-  BookID: number;
-  AccountID: number;
+  BookID: string;
+  AccountID: string;
   IssueDate: Date;
   CompletionDate: Date;
 }

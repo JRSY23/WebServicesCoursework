@@ -1,5 +1,5 @@
 export interface LibraryAccount {
-  AccountID: number;
+  AccountID: string;
   AccountNumber: string;
   PassportNumber: number;
   PassportSerial: number;

@@ -41,7 +41,7 @@ namespace CourseWork.Services.SOAP
         AccountInfo[] GetAccountsInfo();
 
         [OperationContract]
-        HttpStatusCode PostLibraryAccount(LibraryAccount libraryAccount);
+        Task<HttpStatusCode> PostLibraryAccount(LibraryAccount libraryAccount);
         #endregion
 
         #region GetPenaltiesAccounting

@@ -1,8 +1,10 @@
 ﻿using LibraryApi.DAL;
 using LibraryApi.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
 using System.Linq;
 using System.Net;
 using System.ServiceModel;
@@ -12,6 +14,11 @@ namespace CourseWork.Services.SOAP
 {
     public class LibrarySoapService : ILibrarySoapService
     {
+        private readonly LibraryContext _context;
+        public LibrarySoapService(LibraryContext context)
+        {
+            _context = context;
+        }
 
         #region Books
         public Book[] GetBooks()
@@ -145,21 +152,18 @@ namespace CourseWork.Services.SOAP
             }
         }
 
-        public HttpStatusCode PostLibraryAccount([FromBody]LibraryAccount libraryAccount)
+        public async Task<HttpStatusCode> PostLibraryAccount([FromBody]LibraryAccount libraryAccount)
         {
-            using (var _context = LibraryContext.Create())
+            try
             {
-                try
-                {
-                    _context.LibraryAccounts.Add(libraryAccount);
-                    _context.SaveChangesAsync();
+                _context.LibraryAccounts.Add(libraryAccount);
+                await _context.SaveChangesAsync();
 
-                    return HttpStatusCode.Created;
-                }
-                catch (Exception)
-                {
-                    return HttpStatusCode.NoContent;
-                }
+                return HttpStatusCode.Created;
+            }
+            catch (Exception)
+            {
+                return HttpStatusCode.NoContent;
             }
         }
         #endregion
