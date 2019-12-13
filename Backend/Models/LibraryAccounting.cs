@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Horizon.XmlRpc.Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,6 +12,7 @@ namespace LibraryApi.Models
     public partial class LibraryAccounting
     {
         [Key]
+        [XmlRpcMissingMapping(MappingAction.Ignore)]
         public int LibraryAccountingID { get; set; }
         public string Type { get; set; }
         public int BookID { get; set; }

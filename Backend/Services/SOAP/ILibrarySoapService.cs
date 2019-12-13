@@ -19,7 +19,7 @@ namespace CourseWork.Services.SOAP
         BooksInfo[] GetBookInfo();
 
         [OperationContract]
-        HttpStatusCode PostBook(Book book);
+        Task<HttpStatusCode> PostBook(Book book);
         #endregion
 
         #region LibraryAccounting
@@ -30,7 +30,7 @@ namespace CourseWork.Services.SOAP
         LibraryAccountingInfo[] GetLibraryAccountingInfo();
 
         [OperationContract]
-        HttpStatusCode PostLibraryAccounting(LibraryAccounting libraryAccounting);
+        Task<HttpStatusCode> PostLibraryAccounting(LibraryAccounting libraryAccounting);
         #endregion
 
         #region LibraryAccount
@@ -52,7 +52,7 @@ namespace CourseWork.Services.SOAP
         PenaltiesAccountingsInfo[] GetPenaltiesAccountingsInfo();
 
         [OperationContract]
-        HttpStatusCode PostPenaltiesAccounting(PenaltiesAccounting penaltiesAccounting);
+        Task<HttpStatusCode> PostPenaltiesAccounting(PenaltiesAccounting penaltiesAccounting);
         #endregion
 
         #region Penalty
@@ -60,7 +60,7 @@ namespace CourseWork.Services.SOAP
         Penalty[] GetPenalties();
 
         [OperationContract]
-        HttpStatusCode PostPenalty(Penalty penalty);
+        Task<HttpStatusCode> PostPenalty(Penalty penalty);
         #endregion
     }
 }

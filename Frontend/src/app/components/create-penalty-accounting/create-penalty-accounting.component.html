@@ -1,0 +1,32 @@
+<form class="example-form" [formGroup]="form" >
+  <mat-form-field class="example-full-width">
+      <mat-label>Выберите тип штрафа</mat-label>
+      <mat-select formControlName="Penalties" required>
+        <mat-option *ngFor="let penalty of penalties$ | async" [value]="penalty.PenaltyID">
+          {{penalty.Type}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('Penalties').invalid">Выберите тип!</mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+      <mat-label>Выберите читателя</mat-label>
+      <mat-select formControlName="Accounts" required>
+        <mat-option *ngFor="let account of accountsInfo$ | async" [value]="account.AccountID">
+          {{account.AccountData}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('Accounts').invalid">Выберите читателя!</mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input formControlName="Sum" type="number" matInput placeholder="Сумма" required style="color: white;">
+    <mat-error *ngIf="form.get('Sum').invalid">Введите сумму!</mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+      <mat-label>Дата штрафа</mat-label>
+      <input matInput [matDatepicker]="Date" formControlName="Date" placeholder="Choose a date" required>
+      <mat-datepicker-toggle matSuffix [for]="Date"></mat-datepicker-toggle>
+      <mat-datepicker #Date></mat-datepicker>
+      <mat-error *ngIf="form.get('Date').invalid">Введите дату возврата!</mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="onCreateButtonClick()" [disabled]="form.invalid">Добавить</button>
+</form>

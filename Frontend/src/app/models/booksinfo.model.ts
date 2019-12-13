@@ -1,4 +1,4 @@
 export interface BooksInfo {
-  BookID: string;
+  BookID: number;
   BookData: string;
 }

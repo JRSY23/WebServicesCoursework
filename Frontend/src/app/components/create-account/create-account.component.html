@@ -19,5 +19,5 @@
       <input formControlName="PasSerial" type="number" matInput placeholder="Серия паспорта" required style="color: white;">
       <mat-error *ngIf="form.get('PasSerial').invalid">Введите серию паспорта!</mat-error>
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="onCreateButtonClick()" [disabled]="form.invalid">Добавить абонемент</button>
+    <button mat-raised-button color="primary" (click)="onCreateButtonClick()" [disabled]="form.invalid">Добавить</button>
 </form>

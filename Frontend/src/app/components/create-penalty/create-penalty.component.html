@@ -1,0 +1,13 @@
+<form class="example-form" [formGroup]="form" >
+  <mat-form-field class="example-full-width">
+    <input formControlName="Type" matInput placeholder="Тип" required style="color: white;">
+    <mat-error *ngIf="form.get('Type').invalid">Введите тип!</mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+      <mat-label>Дата возврата</mat-label>
+      <input matInput [matDatepicker]="DateFrom" formControlName="DateFrom" placeholder="Choose a date" required>
+      <mat-datepicker-toggle matSuffix [for]="DateFrom"></mat-datepicker-toggle>
+      <mat-datepicker #DateFrom></mat-datepicker>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="onCreateButtonClick()" [disabled]="form.invalid">Добавить</button>
+</form>

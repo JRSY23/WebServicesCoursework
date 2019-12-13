@@ -46,7 +46,8 @@ namespace CourseWork
             //    opt.UseSqlServer(Configuration.GetConnectionString("LibraryDatabase")));
             var optionsBuilder = new DbContextOptionsBuilder<LibraryContext>();
             optionsBuilder.UseSqlServer(Configuration.GetConnectionString("LibraryDatabase"));
-            services.AddSingleton(new LibraryContext(optionsBuilder.Options));
+            //services.AddSingleton(new LibraryContext(optionsBuilder.Options));
+            services.AddTransient(x=> new LibraryContext(optionsBuilder.Options));
 
             services.AddControllers();
             services.AddSingleton(new LibraryServiceXmlRpc());

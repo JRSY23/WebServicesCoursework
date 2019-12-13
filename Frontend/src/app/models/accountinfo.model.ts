@@ -1,4 +1,4 @@
 export interface AccountInfo {
-  AccountID: string;
+  AccountID: number;
   AccountData: string;
 }

@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { ConnectionProxyService } from 'src/app/services/connection-proxy.service';
 import { switchMap } from 'rxjs/operators';
+import { CreateBookComponent } from '../create-book/create-book.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-books-view',
@@ -14,7 +16,7 @@ export class BooksViewComponent implements OnInit {
   public books: Observable<Book[]> = of([]);
   private refresh$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  constructor( private proxyService: ConnectionProxyService) { }
+  constructor( private proxyService: ConnectionProxyService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.books = this.refresh$.pipe(
@@ -24,14 +26,14 @@ export class BooksViewComponent implements OnInit {
     );
   }
 
-  /* public onCreateButtonClick() {
-    const dialogRef = this.dialog.open(CreateCompanyDialogComponent, {
+  public onCreateButtonClick() {
+    const dialogRef = this.dialog.open(CreateBookComponent, {
       height: '400px',
       width: '400px',
     });
     dialogRef.afterClosed().subscribe(() => {
       this.refresh$.next(true);
     });
-  } */
+  }
 
 }

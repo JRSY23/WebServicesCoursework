@@ -1,0 +1,21 @@
+<form class="example-form" [formGroup]="form" >
+  <mat-form-field class="example-full-width">
+    <input formControlName="Name" matInput placeholder="Название" required style="color: white;">
+    <mat-error *ngIf="form.get('Name').invalid">Введите название!</mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input formControlName="Author" matInput placeholder="Автор" required style="color: white;">
+    <mat-error *ngIf="form.get('Author').invalid">Введите автора!</mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Дата выпуска</mat-label>
+    <input matInput [matDatepicker]="IssueDate" formControlName="IssueDate" placeholder="Choose a date" required>
+    <mat-datepicker-toggle matSuffix [for]="IssueDate"></mat-datepicker-toggle>
+    <mat-datepicker #IssueDate></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input formControlName="Cost" matInput type="number" placeholder="Цена" required style="color: white;">
+    <mat-error *ngIf="form.get('Cost.invalid')">Введите цену!</mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="onCreateButtonClick()" [disabled]="form.invalid">Добавить</button>
+</form>

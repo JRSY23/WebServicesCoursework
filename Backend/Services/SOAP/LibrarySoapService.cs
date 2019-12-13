@@ -43,14 +43,14 @@ namespace CourseWork.Services.SOAP
             }
         }
 
-        public HttpStatusCode PostBook([FromBody]Book book)
+        public async Task<HttpStatusCode> PostBook([FromBody]Book book)
         {
             using (var _context = LibraryContext.Create())
             {
                 try
                 {
                     _context.Books.Add(book);
-                    _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
 
                     return HttpStatusCode.Created;
                 }
@@ -109,14 +109,14 @@ namespace CourseWork.Services.SOAP
             }
         }
 
-        public HttpStatusCode PostLibraryAccounting([FromBody]LibraryAccounting libraryAccounting)
+        public async Task<HttpStatusCode> PostLibraryAccounting([FromBody]LibraryAccounting libraryAccounting)
         {
             using (var _context = LibraryContext.Create())
             {
                 try
                 {
                     _context.LibraryAccounting.Add(libraryAccounting);
-                    _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
 
                     return HttpStatusCode.Created;
                 }
@@ -215,14 +215,14 @@ namespace CourseWork.Services.SOAP
             }
         }
 
-        public HttpStatusCode PostPenaltiesAccounting([FromBody]PenaltiesAccounting penaltiesAccounting)
+        public async Task<HttpStatusCode> PostPenaltiesAccounting([FromBody]PenaltiesAccounting penaltiesAccounting)
         {
             using (var _context = LibraryContext.Create())
             {
                 try
                 {
                     _context.PenaltiesAccountings.Add(penaltiesAccounting);
-                    _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
 
                     return HttpStatusCode.Created;
                 }
@@ -244,14 +244,14 @@ namespace CourseWork.Services.SOAP
             }
         }
 
-        public HttpStatusCode PostPenalty([FromBody]Penalty penalty)
+        public async Task<HttpStatusCode> PostPenalty([FromBody]Penalty penalty)
         {
             using (var _context = LibraryContext.Create())
             {
                 try
                 {
                     _context.Penalties.Add(penalty);
-                    _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
 
                     return HttpStatusCode.Created;
                 }

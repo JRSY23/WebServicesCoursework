@@ -1,5 +1,5 @@
 export interface PenaltiesAccountingsInfo {
-  PenaltiesAccountingID: string;
+  PenaltiesAccountingID: number;
   AccountNumber: string;
   FirstName: string;
   SurName: string;

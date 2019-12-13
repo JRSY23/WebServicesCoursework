@@ -13,7 +13,9 @@ import {
   MatIconModule,
   MatMenuModule, MatOptionModule,
   MatSelectModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
 import {RouterModule, Routes} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -29,6 +31,11 @@ import { AccountsViewComponent } from './components/accounts-view/accounts-view.
 import { PenaltiesViewComponent } from './components/penalties-view/penalties-view.component';
 import { PenaltiesaccountingViewComponent } from './components/penaltiesaccounting-view/penaltiesaccounting-view.component';
 import { CreateAccountComponent } from './components/create-account/create-account.component';
+import { CreateLibraryAccountingComponent } from './components/create-library-accounting/create-library-accounting.component';
+import { DatePipe } from '@angular/common';
+import { CreatePenaltyComponent } from './components/create-penalty/create-penalty.component';
+import { CreateBookComponent } from './components/create-book/create-book.component';
+import { CreatePenaltyAccountingComponent } from './components/create-penalty-accounting/create-penalty-accounting.component';
 
 // определение маршрутов
 const appRoutes: Routes = [
@@ -47,10 +54,18 @@ const appRoutes: Routes = [
     AccountsViewComponent,
     PenaltiesaccountingViewComponent,
     PenaltiesViewComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    CreateLibraryAccountingComponent,
+    CreatePenaltyComponent,
+    CreateBookComponent,
+    CreatePenaltyAccountingComponent
   ],
   entryComponents: [
-    CreateAccountComponent
+    CreateAccountComponent,
+    CreateLibraryAccountingComponent,
+    CreatePenaltyComponent,
+    CreateBookComponent,
+    CreatePenaltyAccountingComponent
   ],
   imports: [
     BrowserModule,
@@ -69,9 +84,11 @@ const appRoutes: Routes = [
     MatInputModule,
     MatIconModule,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
-  providers: [ConnectionProxyService, LibraryXmlRpcService, LibraryRestService, LibrarySoapService],
+  providers: [ConnectionProxyService, LibraryXmlRpcService, LibraryRestService, LibrarySoapService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {

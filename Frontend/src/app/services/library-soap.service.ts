@@ -133,14 +133,15 @@ export class LibrarySoapService {
   }
 
   public getAccountsInfo(): Observable<AccountInfo[]> {
-    return (this.soapClient.getValue() as any).GetLibraryAccountsInfo('stub').pipe(
+    return (this.soapClient.getValue() as any).GetAccountsInfo('stub').pipe(
       map((result: any) => {
-        return result.result.GetLibraryAccountingInfo.LibraryAccountsInfo.map((libraryAccountsInfo: any) => {
-          return {
-            AccountID: libraryAccountsInfo.AccontID,
-            AccountData: libraryAccountsInfo.AccountData,
-          } as AccountInfo;
-        });
+         return result.result.GetAccountsInfoResult.AccountInfo;
+        // .map((libraryAccountsInfo: any) => {
+        //   return {
+        //     AccountID: libraryAccountsInfo.AccontID,
+        //     AccountData: libraryAccountsInfo.AccountData,
+        //   };
+        // });
       })
     );
   }

@@ -18,7 +18,7 @@ namespace CourseWork.Services.XMLRPC
         BooksInfo[] GetBookInfo();
 
         [XmlRpcMethod("PostBook")]
-        HttpStatusCode PostBook(Book book);
+        Task<HttpStatusCode> PostBook(Book book);
         #endregion
 
         #region LibraryAccounting
@@ -29,7 +29,7 @@ namespace CourseWork.Services.XMLRPC
         LibraryAccountingInfo[] GetLibraryAccountingInfo();
 
         [XmlRpcMethod("PostLibraryAccounting")]
-        HttpStatusCode PostLibraryAccounting(LibraryAccounting libraryAccounting);
+        Task<HttpStatusCode> PostLibraryAccounting(LibraryAccounting libraryAccounting);
         #endregion
 
         #region LibraryAccount
@@ -51,7 +51,7 @@ namespace CourseWork.Services.XMLRPC
         PenaltiesAccountingsInfo[] GetPenaltiesAccountingsInfo();
 
         [XmlRpcMethod("PostPenaltiesAccounting")]
-        HttpStatusCode PostPenaltiesAccounting(PenaltiesAccounting penaltiesAccounting);
+        Task<HttpStatusCode> PostPenaltiesAccounting(PenaltiesAccounting penaltiesAccounting);
         #endregion
 
         #region Penalty
@@ -59,7 +59,7 @@ namespace CourseWork.Services.XMLRPC
         Penalty[] GetPenalties();
 
         [XmlRpcMethod("PostPenalty")]
-        HttpStatusCode PostPenalty(Penalty penalty);
+        Task<HttpStatusCode> PostPenalty(Penalty penalty);
         #endregion
     }
 }

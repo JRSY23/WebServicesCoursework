@@ -1,5 +1,5 @@
 export interface LibraryAccountingInfo {
-  LibraryAccountingID: string;
+  LibraryAccountingID: number;
   Type: string;
   BookInfo: string;
   AccountInfo: string;

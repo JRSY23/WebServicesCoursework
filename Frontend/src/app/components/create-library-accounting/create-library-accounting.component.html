@@ -1,0 +1,39 @@
+<form class="example-form" [formGroup]="form" >
+  <mat-form-field class="example-full-width">
+    <input formControlName="Type" matInput placeholder="Тип" required style="color: white;">
+    <mat-error *ngIf="form.get('Type').invalid">Введите тип!</mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+      <mat-label>Выберите книгу</mat-label>
+      <mat-select formControlName="Books" required>
+        <mat-option *ngFor="let book of booksInfo$ | async" [value]="book.BookID">
+          {{book.BookData}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('Books').invalid">Выберите книгу!</mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+      <mat-label>Выберите читателя</mat-label>
+      <mat-select formControlName="Accounts" required>
+        <mat-option *ngFor="let account of accountsInfo$ | async" [value]="account.AccountID">
+          {{account.AccountData}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('Accounts').invalid">Выберите читателя!</mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+      <mat-label>Дата регистрации</mat-label>
+      <input matInput [matDatepicker]="IssueDatepicker" formControlName="IssueDate" placeholder="Choose a date" required>
+      <mat-datepicker-toggle matSuffix [for]="IssueDatepicker"></mat-datepicker-toggle>
+      <mat-datepicker #IssueDatepicker></mat-datepicker>
+      <mat-error *ngIf="form.get('IssueDate').invalid">Введите дату возврата!</mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+      <mat-label>Дата возврата</mat-label>
+      <input matInput [matDatepicker]="CompletionDatepicker" formControlName="CompletionDate" placeholder="Choose a date" required>
+      <mat-datepicker-toggle matSuffix [for]="CompletionDatepicker"></mat-datepicker-toggle>
+      <mat-datepicker #CompletionDatepicker></mat-datepicker>
+      <mat-error *ngIf="form.get('CompletionDate').invalid">Введите дату возврата!</mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="onCreateButtonClick()" [disabled]="form.invalid">Добавить</button>
+</form>

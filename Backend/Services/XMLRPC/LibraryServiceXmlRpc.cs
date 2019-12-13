@@ -44,14 +44,14 @@ namespace CourseWork.Services.XMLRPC
             }
         }
 
-        public HttpStatusCode PostBook([FromBody]Book book)
+        public async Task<HttpStatusCode> PostBook([FromBody]Book book)
         {
             using (var _context = LibraryContext.Create())
             {
                 try
                 {
                     _context.Books.Add(book);
-                    _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
 
                     return HttpStatusCode.Created;
                 }
@@ -110,14 +110,14 @@ namespace CourseWork.Services.XMLRPC
             }
         }
 
-        public HttpStatusCode PostLibraryAccounting([FromBody]LibraryAccounting libraryAccounting)
+        public async Task<HttpStatusCode> PostLibraryAccounting([FromBody]LibraryAccounting libraryAccounting)
         {
             using (var _context = LibraryContext.Create())
             {
                 try
                 {
                     _context.LibraryAccounting.Add(libraryAccounting);
-                    _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
 
                     return HttpStatusCode.Created;
                 }
@@ -125,7 +125,7 @@ namespace CourseWork.Services.XMLRPC
                 {
                     return HttpStatusCode.NoContent;
                 }
-                
+
             }
         }
         #endregion
@@ -136,7 +136,7 @@ namespace CourseWork.Services.XMLRPC
             using (var _context = LibraryContext.Create())
             {
                 return _context.LibraryAccounts.ToArray();
-            }           
+            }
         }
 
         public AccountInfo[] GetAccountsInfo()
@@ -219,14 +219,14 @@ namespace CourseWork.Services.XMLRPC
             }
         }
 
-        public HttpStatusCode PostPenaltiesAccounting([FromBody]PenaltiesAccounting penaltiesAccounting)
+        public async Task<HttpStatusCode> PostPenaltiesAccounting([FromBody]PenaltiesAccounting penaltiesAccounting)
         {
             using (var _context = LibraryContext.Create())
             {
                 try
                 {
                     _context.PenaltiesAccountings.Add(penaltiesAccounting);
-                    _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
 
                     return HttpStatusCode.Created;
                 }
@@ -234,7 +234,7 @@ namespace CourseWork.Services.XMLRPC
                 {
 
                     return HttpStatusCode.NoContent;
-                }                
+                }
             }
         }
         #endregion
@@ -248,22 +248,22 @@ namespace CourseWork.Services.XMLRPC
             }
         }
 
-        public HttpStatusCode PostPenalty([FromBody]Penalty penalty)
+        public async Task<HttpStatusCode> PostPenalty([FromBody]Penalty penalty)
         {
             using (var _context = LibraryContext.Create())
             {
                 try
                 {
                     _context.Penalties.Add(penalty);
-                    _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
 
                     return HttpStatusCode.Created;
                 }
                 catch (Exception)
                 {
 
-                    return HttpStatusCode.NoContent; 
-                }               
+                    return HttpStatusCode.NoContent;
+                }
             }
         }
         #endregion
